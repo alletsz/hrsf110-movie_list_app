@@ -23671,7 +23671,8 @@ function (_React$Component) {
       movies: props.movies,
       userAddedMovies: _data_UserMovies__WEBPACK_IMPORTED_MODULE_4__["default"],
       search: '',
-      newMovie: ''
+      newMovie: '',
+      movieStatus: 'Watch'
     };
     return _this;
   }
@@ -23717,13 +23718,21 @@ function (_React$Component) {
       this.setState({
         movies: _data_UserMovies__WEBPACK_IMPORTED_MODULE_4__["default"]
       });
-      console.log(_data_UserMovies__WEBPACK_IMPORTED_MODULE_4__["default"]);
     }
   }, {
     key: "handleAddMovies",
     value: function handleAddMovies(e) {
       this.setState({
         newMovie: e.target.value
+      });
+    }
+  }, {
+    key: "watchToggle",
+    value: function watchToggle(e) {
+      this.setState(function (toggle) {
+        return {
+          movieStatus: !toggle.movieStatus
+        };
       });
     }
   }, {
@@ -23735,8 +23744,10 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_2__["default"], {
         handleSubmit: this.handleSubmit.bind(this),
         handleSearchChange: this.handleSearchChange.bind(this)
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieList__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        movies: this.state.movies
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ToggleWatch, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieList__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        movies: this.state.movies,
+        toggle: this.watchToggle.bind(this),
+        stateToggle: this.state.movieStatus
       }));
     }
   }]);
@@ -23764,11 +23775,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MovieList = function MovieList(_ref) {
-  var movies = _ref.movies;
+  var movies = _ref.movies,
+      toggle = _ref.toggle,
+      stateToggle = _ref.stateToggle;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, movies.map(function (movie, key) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieListEntry__WEBPACK_IMPORTED_MODULE_1__["default"], {
       movie: movie,
-      key: key
+      key: key,
+      toggle: toggle,
+      stateToggle: stateToggle
     });
   }));
 };
@@ -23791,10 +23806,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MovieListEntry = function MovieListEntry(_ref) {
-  var movie = _ref.movie;
+  var movie = _ref.movie,
+      toggle = _ref.toggle,
+      stateToggle = _ref.stateToggle;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "movie"
-  }, movie.title);
+  }, movie.title, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "watchToggle",
+    onClick: toggle
+  }, stateToggle ? 'Watch' : 'Watched'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MovieListEntry);
