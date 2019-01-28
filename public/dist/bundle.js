@@ -23585,30 +23585,6 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./src/Movies.js":
-/*!***********************!*\
-  !*** ./src/Movies.js ***!
-  \***********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var movies = [{
-  title: 'Mean Girls'
-}, {
-  title: 'Hackers'
-}, {
-  title: 'The Grey'
-}, {
-  title: 'Sunshine'
-}, {
-  title: 'Ex Machina'
-}];
-/* harmony default export */ __webpack_exports__["default"] = (movies);
-
-/***/ }),
-
 /***/ "./src/components/App.jsx":
 /*!********************************!*\
   !*** ./src/components/App.jsx ***!
@@ -23620,8 +23596,8 @@ var movies = [{
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Movies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Movies */ "./src/Movies.js");
-/* harmony import */ var _MovieList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MovieList */ "./src/components/MovieList.jsx");
+/* harmony import */ var _MovieList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MovieList */ "./src/components/MovieList.jsx");
+/* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Search */ "./src/components/Search.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23632,13 +23608,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -23656,15 +23632,51 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this.state = {
-      movies: _Movies__WEBPACK_IMPORTED_MODULE_1__["default"]
+      movies: props.movies,
+      currentMovie: '',
+      search: ''
     };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSearchChange = _this.handleSearchChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(App, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      var searchMovie = this.state.search;
+      var allMovies = this.state.movies;
+      allMovies.forEach(function (movie) {
+        var lowerCase = movie.title.toLowerCase();
+        console.log(lowerCase);
+
+        if (movie.title === searchMovie) {
+          console.log('yay');
+
+          _this2.setState({
+            movies: [movie]
+          });
+        }
+      });
+      event.preventDefault();
+    }
+  }, {
+    key: "handleSearchChange",
+    value: function handleSearchChange(e) {
+      this.setState({
+        search: e.target.value
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Movie List App"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Movie List App"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        movies: this.state.movies,
+        handleSubmit: this.handleSubmit,
+        handleSearchChange: this.handleSearchChange
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieList__WEBPACK_IMPORTED_MODULE_1__["default"], {
         movies: this.state.movies
       }));
     }
@@ -23730,6 +23742,62 @@ var MovieListEntry = function MovieListEntry(_ref) {
 
 /***/ }),
 
+/***/ "./src/components/Search.jsx":
+/*!***********************************!*\
+  !*** ./src/components/Search.jsx ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Search = function Search(_ref) {
+  var handleSubmit = _ref.handleSubmit,
+      handleSearchChange = _ref.handleSearchChange;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    placeholder: "Search...",
+    onChange: handleSearchChange
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "submit",
+    value: "Submit"
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Search);
+
+/***/ }),
+
+/***/ "./src/data/Movies.js":
+/*!****************************!*\
+  !*** ./src/data/Movies.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var movies = [{
+  title: 'Mean Girls'
+}, {
+  title: 'Hackers'
+}, {
+  title: 'The Grey'
+}, {
+  title: 'Sunshine'
+}, {
+  title: 'Ex Machina'
+}];
+/* harmony default export */ __webpack_exports__["default"] = (movies);
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -23744,13 +23812,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_App_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App.jsx */ "./src/components/App.jsx");
-/* harmony import */ var _Movies_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Movies.js */ "./src/Movies.js");
+/* harmony import */ var _data_Movies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data/Movies */ "./src/data/Movies.js");
 
 
 
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_App_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-  movies: _Movies_js__WEBPACK_IMPORTED_MODULE_3__["default"]
+  movies: _data_Movies__WEBPACK_IMPORTED_MODULE_3__["default"]
 }), document.getElementById('app'));
 
 /***/ })
