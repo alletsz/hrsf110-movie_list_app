@@ -46,19 +46,18 @@ class App extends React.Component {
     this.setState({newMovie: e.target.value})
   }
 
-  watchToggle(e){
-    this.setState(toggle=> ({
-      movieStatus: !toggle.movieStatus
-    }))
-  }
+  // watchToggle(e){
+  //   this.setState(toggle=> ({
+  //     movieStatus: !toggle.movieStatus
+  //   }))
+  // }
   render() {
     return (
       <div>
         <h1>Movie List App</h1> 
           <AddMovies handleAddMoviesSubmit={this.handleAddMoviesSubmit.bind(this)} handleAddMovies={this.handleAddMovies.bind(this)} />
           <Search handleSubmit={this.handleSubmit.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)}/>
-          <ToggleWatch/>
-          <MovieList movies={this.state.movies} toggle={this.watchToggle.bind(this)} stateToggle={this.state.movieStatus} />
+          <MovieList movies={this.state.movies}/>
       </div>
     )
   }
