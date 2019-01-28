@@ -2,14 +2,14 @@ import React from 'react';
 import MovieList from './MovieList';
 import Search from './Search';
 import AddMovies from './AddMovies'
-import MovieListEntry from './MovieListEntry';
+import UserMovies from '../data/UserMovies';
 
 class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       movies: props.movies,
-      userAddedMovies:'',
+      userAddedMovies: UserMovies,
       search: '',
       newMovie:'',
     }
@@ -24,9 +24,10 @@ class App extends React.Component {
       if(lowerCaseMovie === lowerCaseSearch){
         console.log('yay')
         this.setState({movies:[movie]})
-      } else {
-        alert('Movie not here!')
-      }
+      } 
+      // else {
+      //   alert('Movie not here!')
+      // }
     });
     
   }
@@ -36,8 +37,9 @@ class App extends React.Component {
   
   handleAddMoviesSubmit(event){
     event.preventDefault();
-    var newMovie = [{title:this.state.newMovie}];
-    console.log(newMovie);
+    UserMovies.push({title:this.state.newMovie});
+    this.setState({movies: UserMovies})
+    console.log(UserMovies);
   }
 
   handleAddMovies(e){

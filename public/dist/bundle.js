@@ -23631,7 +23631,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MovieList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MovieList */ "./src/components/MovieList.jsx");
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Search */ "./src/components/Search.jsx");
 /* harmony import */ var _AddMovies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddMovies */ "./src/components/AddMovies.jsx");
-/* harmony import */ var _MovieListEntry__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MovieListEntry */ "./src/components/MovieListEntry.jsx");
+/* harmony import */ var _data_UserMovies__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/UserMovies */ "./src/data/UserMovies.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23669,7 +23669,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this.state = {
       movies: props.movies,
-      userAddedMovies: '',
+      userAddedMovies: _data_UserMovies__WEBPACK_IMPORTED_MODULE_4__["default"],
       search: '',
       newMovie: ''
     };
@@ -23694,9 +23694,10 @@ function (_React$Component) {
           _this2.setState({
             movies: [movie]
           });
-        } else {
-          alert('Movie not here!');
-        }
+        } // else {
+        //   alert('Movie not here!')
+        // }
+
       });
     }
   }, {
@@ -23710,10 +23711,13 @@ function (_React$Component) {
     key: "handleAddMoviesSubmit",
     value: function handleAddMoviesSubmit(event) {
       event.preventDefault();
-      var newMovie = [{
+      _data_UserMovies__WEBPACK_IMPORTED_MODULE_4__["default"].push({
         title: this.state.newMovie
-      }];
-      console.log(newMovie);
+      });
+      this.setState({
+        movies: _data_UserMovies__WEBPACK_IMPORTED_MODULE_4__["default"]
+      });
+      console.log(_data_UserMovies__WEBPACK_IMPORTED_MODULE_4__["default"]);
     }
   }, {
     key: "handleAddMovies",
@@ -23850,6 +23854,20 @@ var movies = [{
   title: 'Ex Machina'
 }];
 /* harmony default export */ __webpack_exports__["default"] = (movies);
+
+/***/ }),
+
+/***/ "./src/data/UserMovies.js":
+/*!********************************!*\
+  !*** ./src/data/UserMovies.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var UserMovies = [];
+/* harmony default export */ __webpack_exports__["default"] = (UserMovies);
 
 /***/ }),
 
