@@ -2,9 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
-import movies from './Movies.js'
-
-
+import movies from './data/Movies'
 
 ReactDOM.render(<App movies={movies}/>,document.getElementById('app'))
 
