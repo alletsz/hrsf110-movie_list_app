@@ -10,14 +10,12 @@ class MovieListEntry extends React.Component{
     this.watched = this.watched.bind(this)
   }
   watched(e){
-    // console.log(this.state.watchStatus)
     if(this.state.watchStatus === 'Watch'){
       this.setState({watchStatus: 'Watched'})
     }
     if(this.state.watchStatus === 'Watched'){
       this.setState({watchStatus: 'Watch'})
     }
-    
   }
   render(){
     return(

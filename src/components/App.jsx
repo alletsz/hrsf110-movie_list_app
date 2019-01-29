@@ -3,6 +3,7 @@ import MovieList from './MovieList';
 import Search from './Search';
 import AddMovies from './AddMovies'
 import UserMovies from '../data/UserMovies';
+import watchedMovies from './watchedMovies';
 
 class App extends React.Component {
   constructor(props){
@@ -15,6 +16,7 @@ class App extends React.Component {
       movieStatus: 'Watch',
       watchedMovies: []
     }
+    this.toggleWatchedMovie= this.toggleWatchedMovie.bind(this)
   }
   handleSubmit(event){
     event.preventDefault();
@@ -48,15 +50,29 @@ class App extends React.Component {
   }
 
   watchedMovieAdder(movie){
-    
+    // let watchMovie = this.state.watchedMovies;
+    // // console.log(watchMovie)
+    // watchMovie.forEach(el=>{
+    //   if(movie.title === el.title){
+    //   }
+    //   // console.log(el.title)
+    // })
     this.state.watchedMovies.push(movie)
   }
+  toggleWatchedMovie(e){
+    // console.log(this.state.watchedMovies)
+
+    this.setState({movies:this.state.watchedMovies})
+  }
+
   render() {
     return (
       <div>
         <h1>Movie List App</h1> 
           <AddMovies handleAddMoviesSubmit={this.handleAddMoviesSubmit.bind(this)} handleAddMovies={this.handleAddMovies.bind(this)} />
           <Search handleSubmit={this.handleSubmit.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)}/>
+        <button onClick={this.toggleWatchedMovie}>Watched</button>
+        <button>To Watch</button>
           <MovieList movies={this.state.movies} watchedMovieAdder={this.watchedMovieAdder.bind(this)}/>
       </div>
     )
