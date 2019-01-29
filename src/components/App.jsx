@@ -13,6 +13,7 @@ class App extends React.Component {
       search: '',
       newMovie:'',
       movieStatus: 'Watch',
+      watchedMovies: []
     }
   }
   handleSubmit(event){
@@ -46,18 +47,17 @@ class App extends React.Component {
     this.setState({newMovie: e.target.value})
   }
 
-  // watchToggle(e){
-  //   this.setState(toggle=> ({
-  //     movieStatus: !toggle.movieStatus
-  //   }))
-  // }
+  watchedMovieAdder(movie){
+    
+    this.state.watchedMovies.push(movie)
+  }
   render() {
     return (
       <div>
         <h1>Movie List App</h1> 
           <AddMovies handleAddMoviesSubmit={this.handleAddMoviesSubmit.bind(this)} handleAddMovies={this.handleAddMovies.bind(this)} />
           <Search handleSubmit={this.handleSubmit.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)}/>
-          <MovieList movies={this.state.movies}/>
+          <MovieList movies={this.state.movies} watchedMovieAdder={this.watchedMovieAdder.bind(this)}/>
       </div>
     )
   }

@@ -17,13 +17,12 @@ class MovieListEntry extends React.Component{
     if(this.state.watchStatus === 'Watched'){
       this.setState({watchStatus: 'Watch'})
     }
-
-    console.log('hi')
+    
   }
   render(){
     return(
       <div onClick={this.watched}>
-      <div className='movie'>
+      <div className='movie' onClick = {() => {this.props.watchedMovieAdder({title:this.props.movie.title})}}>
         {this.props.movie.title}
       <button className='watchToggle'>{this.state.watchStatus}</button>
      </div>
