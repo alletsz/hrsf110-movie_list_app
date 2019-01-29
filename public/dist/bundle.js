@@ -23672,7 +23672,8 @@ function (_React$Component) {
       userAddedMovies: _data_UserMovies__WEBPACK_IMPORTED_MODULE_4__["default"],
       search: '',
       newMovie: '',
-      movieStatus: 'Watch'
+      movieStatus: 'Watch',
+      watchedMovies: []
     };
     return _this;
   }
@@ -23725,12 +23726,12 @@ function (_React$Component) {
       this.setState({
         newMovie: e.target.value
       });
-    } // watchToggle(e){
-    //   this.setState(toggle=> ({
-    //     movieStatus: !toggle.movieStatus
-    //   }))
-    // }
-
+    }
+  }, {
+    key: "watchedMovieAdder",
+    value: function watchedMovieAdder(movie) {
+      this.state.watchedMovies.push(movie);
+    }
   }, {
     key: "render",
     value: function render() {
@@ -23741,7 +23742,8 @@ function (_React$Component) {
         handleSubmit: this.handleSubmit.bind(this),
         handleSearchChange: this.handleSearchChange.bind(this)
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieList__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        movies: this.state.movies
+        movies: this.state.movies,
+        watchedMovieAdder: this.watchedMovieAdder.bind(this)
       }));
     }
   }]);
@@ -23770,12 +23772,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var MovieList = function MovieList(_ref) {
   var movies = _ref.movies,
-      toggle = _ref.toggle,
-      stateToggle = _ref.stateToggle;
+      watchedMovieAdder = _ref.watchedMovieAdder;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, movies.map(function (movie, key) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieListEntry__WEBPACK_IMPORTED_MODULE_1__["default"], {
       movie: movie,
-      key: key
+      key: key,
+      watchedMovieAdder: watchedMovieAdder
     });
   }));
 };
@@ -23851,16 +23853,21 @@ function (_React$Component) {
           watchStatus: 'Watch'
         });
       }
-
-      console.log('hi');
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.watched
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "movie"
+        className: "movie",
+        onClick: function onClick() {
+          _this2.props.watchedMovieAdder({
+            title: _this2.props.movie.title
+          });
+        }
       }, this.props.movie.title, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "watchToggle"
       }, this.state.watchStatus)));
