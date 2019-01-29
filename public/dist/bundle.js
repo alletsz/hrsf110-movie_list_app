@@ -23632,6 +23632,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Search */ "./src/components/Search.jsx");
 /* harmony import */ var _AddMovies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddMovies */ "./src/components/AddMovies.jsx");
 /* harmony import */ var _data_UserMovies__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data/UserMovies */ "./src/data/UserMovies.js");
+/* harmony import */ var _watchedMovies__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./watchedMovies */ "./src/components/watchedMovies.jsx");
+/* harmony import */ var _watchedMovies__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_watchedMovies__WEBPACK_IMPORTED_MODULE_5__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23642,13 +23644,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -23675,6 +23678,7 @@ function (_React$Component) {
       movieStatus: 'Watch',
       watchedMovies: []
     };
+    _this.toggleWatchedMovie = _this.toggleWatchedMovie.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -23730,7 +23734,22 @@ function (_React$Component) {
   }, {
     key: "watchedMovieAdder",
     value: function watchedMovieAdder(movie) {
+      // let watchMovie = this.state.watchedMovies;
+      // // console.log(watchMovie)
+      // watchMovie.forEach(el=>{
+      //   if(movie.title === el.title){
+      //   }
+      //   // console.log(el.title)
+      // })
       this.state.watchedMovies.push(movie);
+    }
+  }, {
+    key: "toggleWatchedMovie",
+    value: function toggleWatchedMovie(e) {
+      // console.log(this.state.watchedMovies)
+      this.setState({
+        movies: this.state.watchedMovies
+      });
     }
   }, {
     key: "render",
@@ -23741,7 +23760,9 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_2__["default"], {
         handleSubmit: this.handleSubmit.bind(this),
         handleSearchChange: this.handleSearchChange.bind(this)
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieList__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.toggleWatchedMovie
+      }, "Watched"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "To Watch"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_MovieList__WEBPACK_IMPORTED_MODULE_1__["default"], {
         movies: this.state.movies,
         watchedMovieAdder: this.watchedMovieAdder.bind(this)
       }));
@@ -23841,7 +23862,6 @@ function (_React$Component) {
   _createClass(MovieListEntry, [{
     key: "watched",
     value: function watched(e) {
-      // console.log(this.state.watchStatus)
       if (this.state.watchStatus === 'Watch') {
         this.setState({
           watchStatus: 'Watched'
@@ -23916,6 +23936,17 @@ var Search = function Search(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Search);
+
+/***/ }),
+
+/***/ "./src/components/watchedMovies.jsx":
+/*!******************************************!*\
+  !*** ./src/components/watchedMovies.jsx ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 
